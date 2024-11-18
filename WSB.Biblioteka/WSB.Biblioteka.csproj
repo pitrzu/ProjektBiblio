@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WSB.Biblioteka.Contracts\WSB.Biblioteka.Contracts.csproj" />
+    <ProjectReference Include="..\WSB.Biblioteka.Core\WSB.Biblioteka.Core.csproj" />
+  </ItemGroup>
+
 </Project>

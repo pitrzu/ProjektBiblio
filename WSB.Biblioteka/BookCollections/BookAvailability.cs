@@ -1,6 +1,6 @@
 ﻿using WSB.Biblioteka.Books;
 
-namespace WSB.Biblioteka.Libraries;
+namespace WSB.Biblioteka.BookCollections;
 
 internal class BookAvailability
 {

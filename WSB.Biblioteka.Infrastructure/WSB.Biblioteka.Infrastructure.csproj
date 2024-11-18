@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WSB.Biblioteka.Contracts\WSB.Biblioteka.Contracts.csproj" />
+      <ProjectReference Include="..\WSB.Biblioteka.Core\WSB.Biblioteka.Core.csproj" />
+        <ProjectReference Include="..\WSB.Biblioteka\WSB.Biblioteka.csproj" /></ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    </ItemGroup>
+
+</Project>
