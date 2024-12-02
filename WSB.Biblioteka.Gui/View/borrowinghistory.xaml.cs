@@ -23,11 +23,6 @@ namespace WSB.Biblioteka.Gui.View
         {
             InitializeComponent();
         }
-        public borrowinghistory()
-        {
-            InitializeComponent();
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

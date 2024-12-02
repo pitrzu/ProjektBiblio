@@ -3,10 +3,228 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WSB.Biblioteka.Gui.View"
         mc:Ignorable="d"
-        Title="MainAccount" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainAccount" Height="600" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="12">
+        <Border BorderThickness="2" CornerRadius="10" Opacity="0.95" HorizontalAlignment="Left" Width="800">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0" />
+                    <GradientStop Color="#DA34AE" Offset="0.75" />
+                    <GradientStop Color="#8A16C1" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0" />
+                    <GradientStop Color="#1B1448" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="74*" />
+                    <RowDefinition Height="199*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Nagłówek z przyciskami -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="25" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Tytuł okna -->
+                    <TextBlock Text="Moje Konto"
+                               Foreground="White"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+
+                    <!-- Przycisk Zminimalizuj -->
+                    <Button x:Name="btnMinimize"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Przycisk Zamknij -->
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Sekcja zawartości -->
+                <Grid Grid.Row="1" Margin="20,20,20,20" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Dane użytkownika -->
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="20">
+                        <TextBlock Text="Imię i nazwisko:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding FullName}" Foreground="LightGray" />
+
+                        <TextBlock Text="Adres e-mail:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding Email}" Foreground="LightGray" />
+
+                        <TextBlock Text="Telefon kontaktowy:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding Phone}" Foreground="LightGray" />
+
+                        <TextBlock Text="Liczba aktywnych wypożyczeń:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding ActiveLoans}" Foreground="LightGray" />
+
+                        <TextBlock Text="Ostatnie logowanie:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding LastLogin}" Foreground="LightGray" />
+
+                        <TextBlock Text="Status użytkownika:" Foreground="White" FontWeight="Bold" Margin="0,10,0,0" />
+                        <TextBlock Text="{Binding Status}" Foreground="LightGray" />
+                    </StackPanel>
+
+                    <!-- Przyciski akcji -->
+                    <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,306,0,0">
+                        <Button Content="Zmień hasło" 
+                                Foreground="White" 
+                                FontSize="14" 
+                                FontFamily="Montserrat" 
+                                Width="150" 
+                                Height="40" 
+                                Margin="0,10"
+                                >
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#462AD8" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#28AEED" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <Button Content="Usuń konto" 
+                                Foreground="White" 
+                                FontSize="14" 
+                                FontFamily="Montserrat" 
+                                Width="150" 
+                                Height="40" 
+                                Margin="0,10"
+                                >
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#DA34AE" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C62DAE" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <Button Content="Wyloguj" 
+                                Foreground="White" 
+                                FontSize="14" 
+                                FontFamily="Montserrat" 
+                                Width="150" 
+                                Height="40" 
+                                Margin="0,10"
+                                Click="Logout_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#DA34AE" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C62DAE" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Button Content="Cofnij" 
+                    Foreground="White" 
+                    FontSize="14" 
+                    FontFamily="Montserrat" 
+                    Margin="20,4,701,6"
+                    Click="btn_Back_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#462AD8" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#28AEED" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </Grid>
+        </Border>
+    </Border>
 </Window>
+

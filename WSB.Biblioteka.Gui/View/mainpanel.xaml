@@ -3,10 +3,130 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WSB.Biblioteka.Gui.View"
         mc:Ignorable="d"
-        Title="mainpanel" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="mainpanel" Height="900" Width="750"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="12" Background="Transparent">
+        <Border BorderThickness="2" CornerRadius="10" Opacity="0.95" Margin="0,0,10,0">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Nagłówek z przyciskami -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnMinimize"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+
+                <!-- Główna zawartość -->
+                <StackPanel Grid.Row="1" Margin="20">
+                    <!-- Pole wyszukiwania -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,0,20">
+                        <TextBox x:Name="txtSearch" Width="446" Height="30" Margin="100,0,10,0" />
+                        <Button Content="Szukaj" Width="100" Height="30"
+                                Background="#462AD8" Foreground="White" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <!-- Lista książek -->
+                    <ListView x:Name="listBooks" Margin="0,20,0,0" Background="#1B1448" Foreground="White">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Tytuł" DisplayMemberBinding="{Binding Title}" Width="200"/>
+                                <GridViewColumn Header="Autor" DisplayMemberBinding="{Binding Author}" Width="150"/>
+                                <GridViewColumn Header="Kategoria" DisplayMemberBinding="{Binding Category}" Width="150"/>
+                                <GridViewColumn Header="Dostępność" DisplayMemberBinding="{Binding Availability}" Width="100"/>
+                                <GridViewColumn Header="Akcja" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Wypożycz" Width="80"
+                                                    Background="#28AEED" Foreground="White" Cursor="Hand"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                <Button Content="Cofnij" 
+                    Foreground="White" 
+                    FontSize="14" 
+                    FontFamily="Montserrat" 
+                    Margin="20,5,641,851"
+                    Click="btn_Back_Click" Grid.RowSpan="2">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#462AD8" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#28AEED" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+    </Border>
 </Window>
+

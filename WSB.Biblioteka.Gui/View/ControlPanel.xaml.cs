@@ -71,8 +71,6 @@ namespace WSB.Biblioteka.Gui.View
                 MessageBox.Show($"Błąd: {ex.Message}");
 
             }
-
-
         }
         private void btnSearchBooks_Click(object sender, RoutedEventArgs e)
         {
@@ -88,8 +86,6 @@ namespace WSB.Biblioteka.Gui.View
                 MessageBox.Show($"Błąd:{ex.Message}");
             }
         }
-
-
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Wylogowano pomyślnie.");
